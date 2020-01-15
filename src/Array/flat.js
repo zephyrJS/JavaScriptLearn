@@ -1,11 +1,11 @@
 // 遍历的方式
 function selfFlat(depth = 1) {
     const arr = Array.prototype.slice.call(this)
-    if(depth === 0) return arr
+    if (depth === 0) return arr
     return arr.reduce((pre, curr) => {
-        if(Array.isArray(curr)) {
+        if (Array.isArray(curr)) {
             return [...pre, ...selfFlat.call(curr, depth - 1)]
-        }else {
+        } else {
             return [...pre, curr]
         }
     }, [])
@@ -16,13 +16,18 @@ function stackFlat() {
     const arr = Array.prototype.slice.call(this)
     const stack = [...arr]
     const res = []
-    while(stack.length) {
+    while (stack.length) {
         let top = stack.pop()
-        if(Array.isArray(top)) {
+        if (Array.isArray(top)) {
             stack.push(...top)
-        }else {
+        } else {
             res.push(top)
         }
     }
     return res.reverse()
+}
+
+function selfFlatMap(fn) {
+    const arr = Array.prototype.slice.call(this)
+    return arr.reduce((pre, curr) => [...pre, ...fn.call(null, curr)], [])
 }

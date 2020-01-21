@@ -1,11 +1,10 @@
 function create() {
-    // 1 实例化一个对象
-    const obj = new Object()
-    // 2 获取构造函数
+    // 1 获取构造函数，同时删除 arguments 中的第一个参数
+    // 2 创建实例对象并链接构造函数的原型对象
+    // 3 绑定 this 实现继承，obj 能访问构造函数的属性、方法
+    // 4 优先返回构造函数返回的方法
     const Con = Array.prototype.shift.call(arguments)
-    // 3 将构造函数的原型对象赋值给实例对象
-    obj.__proto__ = Con.prototype
-    // 4 将构造函数的 this 指向实例对象
-    Con.apply(obj, arguments)
-    return obj
+    const obj = Object.create(Con.prototype)
+    const res = Con.apply(obj, arguments)
+    return res instanceof Object ? res : obj
 }

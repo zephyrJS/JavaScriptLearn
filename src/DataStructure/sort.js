@@ -92,8 +92,8 @@ function merge(arr, l, r) {
 // -------------------
 // Test
 
-assert.deepEqual(bubbleSort([3, 4, 5, 2, 1, 6]), [1, 2, 3, 4, 5, 6])
-assert.deepEqual(selectionSort([3, 4, 5, 2, 1, 6]), [1, 2, 3, 4, 5, 6])
-assert.deepEqual(insertionSort([3, 4, 5, 2, 1, 6]), [1, 2, 3, 4, 5, 6])
-assert.deepEqual(mergeSort([3, 4, 5, 2, 1, 6]), [1, 2, 3, 4, 5, 6])
+assert.deepStrictEqual(bubbleSort([3, 4, 5, 2, 1, 6]), [1, 2, 3, 4, 5, 6])
+assert.deepStrictEqual(selectionSort([3, 4, 5, 2, 1, 6]), [1, 2, 3, 4, 5, 6])
+assert.deepStrictEqual(insertionSort([3, 4, 5, 2, 1, 6]), [1, 2, 3, 4, 5, 6])
+assert.deepStrictEqual(mergeSort([3, 4, 5, 2, 1, 6]), [1, 2, 3, 4, 5, 6])
 console.log('All assertion passed')

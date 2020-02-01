@@ -115,7 +115,7 @@ tokenizer.tokenize(`var a = 1`)
 // -----------------
 // Test
 
-assert.deepEqual(tokenizer.tokenize(`var a = 1`), [
+assert.deepStrictEqual(tokenizer.tokenize(`var a = 1`), [
     { type: 'identifier', value: 'var' },
     { type: 'whitespace', value: ' ' },
     { type: 'identifier', value: 'a' },

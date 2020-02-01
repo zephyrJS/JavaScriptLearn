@@ -42,10 +42,58 @@ function insertionSort(arr) {
     return arr
 }
 
+// 归并排序
+// 分：从中心点分割数组，知道子数组长度为 1
+// 归并：创建临时的数据 temp，比较两个数组第一个元素，将较小的值放到 temp 中，最后在较长数组的剩余部分加到 temp 中
+function mergeSort(arr) {
+    _mergeSort(arr, 0, arr.length - 1)
+    return arr
+}
+
+// 区间为 [l, r]
+function _mergeSort(arr, l, r) {
+    if (l >= r) return
+    const mid = Math.floor((l + r) / 2)
+    _mergeSort(arr, l, mid)
+    _mergeSort(arr, mid + 1, r)
+    merge(arr, l, r)
+}
+
+// 合并有序数组
+function merge(arr, l, r) {
+    const mid = Math.floor((l + r) / 2)
+    const temp = []
+    let i = l
+    let j = mid + 1
+    let k = 0
+    while (i <= mid && j <= r) {
+        if (arr[i] <= arr[j]) {
+            temp[k++] = arr[i++]
+        } else {
+            temp[k++] = arr[j++]
+        }
+    }
+
+    while (i <= mid) {
+        temp[k++] = arr[i++]
+    }
+
+    while (j <= r) {
+        temp[k++] = arr[j++]
+    }
+
+    k = 0
+    for (let i = l; i <= r; i++) {
+        arr[i] = temp[k++]
+    }
+}
+
+
 // -------------------
 // Test
 
 assert.deepEqual(bubbleSort([3, 4, 5, 2, 1, 6]), [1, 2, 3, 4, 5, 6])
 assert.deepEqual(selectionSort([3, 4, 5, 2, 1, 6]), [1, 2, 3, 4, 5, 6])
 assert.deepEqual(insertionSort([3, 4, 5, 2, 1, 6]), [1, 2, 3, 4, 5, 6])
+assert.deepEqual(mergeSort([3, 4, 5, 2, 1, 6]), [1, 2, 3, 4, 5, 6])
 console.log('All assertion passed')
